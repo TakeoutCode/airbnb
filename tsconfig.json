@@ -36,8 +36,8 @@
       "@interfaces/*": [
         "interfaces/*"
       ],
-      "@models/*": [
-        "models/*"
+      "@libs/*": [
+        "libs/*"
       ],
       "@database/*": [
         "database/*"
