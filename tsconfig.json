@@ -31,7 +31,7 @@
         "assets/*"
       ],
       "@pages/*": [
-        "pages/*"
+        "../pages/*"
       ],
       "@interfaces/*": [
         "interfaces/*"
