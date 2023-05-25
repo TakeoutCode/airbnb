@@ -19,8 +19,10 @@ import { Button } from '@components/Button';
 
 export const LoginModal = () => {
   const router = useRouter();
+
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -57,6 +59,11 @@ export const LoginModal = () => {
       toast.error('Something went wrong');
     }
   };
+
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
@@ -106,16 +113,16 @@ export const LoginModal = () => {
         '
       >
         <div className='flex flex-row items-center justify-center gap-2'>
-          <div>Already have an account?</div>
+          <div>First time using Airbnb?</div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className='
             text-neutral-800
             cursor-pointer
             hover:underline
           '
           >
-            Login
+            Create an accout
           </div>
         </div>
       </div>
