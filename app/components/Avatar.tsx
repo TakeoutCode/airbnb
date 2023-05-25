@@ -1,8 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { FC } from 'react';
 
-export const Avatar = () => {
+interface AvatarProps {
+  src: string | null | undefined;
+}
+
+export const Avatar: FC<AvatarProps> = ({ src }) => {
   return (
     <Image
       className='
@@ -11,7 +16,7 @@ export const Avatar = () => {
       height={'30'}
       width={'30'}
       alt={'Avatar'}
-      src={'/images/placeholder.jpg'}
+      src={src || '/images/placeholder.jpg'}
     />
   );
 };
