@@ -3,6 +3,7 @@ import { Heading } from '@components/Heading';
 import { CategoryInput } from '@components/inputs/CategoryInput';
 import { Counter } from '@components/inputs/Counter';
 import { CountrySelect } from '@components/inputs/CountrySelect';
+import { ImageUpload } from '@components/inputs/ImageUpload';
 import { Modal } from '@components/modals/Modal';
 import { categories } from '@components/navbar/Categories';
 import { useRentModal } from '@hooks/useRentModal';
@@ -50,6 +51,7 @@ export const RentModal = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
   const Map = useMemo(
     () =>
@@ -166,6 +168,22 @@ export const RentModal = () => {
       </div>
     );
   }
+
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title={'Add photo of your place'}
+          subtitle={'Show guests what your place looks like!'}
+        />
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomValue('imageSrc', value)}
+        />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
