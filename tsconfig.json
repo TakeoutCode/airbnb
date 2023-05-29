@@ -21,8 +21,8 @@
     ],
     "baseUrl": "./app/",
     "paths": {
-      "@styles/*": [
-        "styles/*"
+      "@actions/*": [
+        "actions/*"
       ],
       "@components/*": [
         "components/*"
