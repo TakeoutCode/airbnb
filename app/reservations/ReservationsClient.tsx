@@ -1,20 +1,21 @@
 'use client';
-
-import { FC, useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { FC, useState, useCallback } from 'react';
 import { SafeReservation, SafeUser } from 'types';
+import { useRouter } from 'next/navigation';
 
-import { Container } from '@components/Container';
-import { Heading } from '../components/Heading';
-import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
+
+import { Heading } from '@components/Heading';
+import { Container } from '@components/Container';
 import { ListingCard } from '@components/listings/ListingCard';
 
-interface TripsClientProps {
+interface ReservationsClientProps {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
 }
-export const TripsClient: FC<TripsClientProps> = ({
+
+export const ReservationsClient: FC<ReservationsClientProps> = ({
   reservations,
   currentUser,
 }) => {
@@ -23,7 +24,6 @@ export const TripsClient: FC<TripsClientProps> = ({
 
   const onCancel = useCallback(
     async (id: string) => {
-      setDeletingId(id);
       try {
         await axios.delete(`/api/reservations/${id}`);
         toast.success('Reservation cancelled');
@@ -39,8 +39,8 @@ export const TripsClient: FC<TripsClientProps> = ({
   return (
     <Container>
       <Heading
-        title={'Trips'}
-        subtitle={`Where you've been and where you're going`}
+        title={'Reservations'}
+        subtitle={'Bookings on your properties'}
       />
       <div
         className='
@@ -63,7 +63,7 @@ export const TripsClient: FC<TripsClientProps> = ({
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel={'Cancel reservation'}
+            actionLabel={'Cancel guest reservation'}
             currentUser={currentUser}
           />
         ))}
