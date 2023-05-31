@@ -1,10 +1,9 @@
 'use client';
 
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { SafeListing, SafeUser } from 'types';
+import { SafeListing, SafeReservation, SafeUser } from 'types';
 import { useRouter } from 'next/navigation';
 
-import { Reservation } from '@prisma/client';
 import axios from 'axios';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { toast } from 'react-hot-toast';
@@ -24,7 +23,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  reservations?: Reservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -95,8 +94,6 @@ const ListingClient: FC<ListingClientProps> = ({
         setTotalPrice(listing.price);
       }
     }
-
-    return () => {};
   }, [dateRange, listing.price]);
 
   const category = useMemo(() => {
