@@ -2,7 +2,7 @@
 
 import { FC, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { SafeReservation, SafeUser } from 'types';
+import { SafeListing, SafeUser } from 'types';
 
 import { Container } from '@components/Container';
 import { Heading } from '@components/Heading';
@@ -10,12 +10,12 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { ListingCard } from '@components/listings/ListingCard';
 
-interface TripsClientProps {
-  reservations: SafeReservation[];
+interface PropertiesClientProps {
+  listings: SafeListing[];
   currentUser?: SafeUser | null;
 }
-export const TripsClient: FC<TripsClientProps> = ({
-  reservations,
+export const PropertiesClient: FC<PropertiesClientProps> = ({
+  listings,
   currentUser,
 }) => {
   const router = useRouter();
@@ -25,8 +25,8 @@ export const TripsClient: FC<TripsClientProps> = ({
     async (id: string) => {
       setDeletingId(id);
       try {
-        await axios.delete(`/api/reservations/${id}`);
-        toast.success('Reservation cancelled');
+        await axios.delete(`/api/listings/${id}`);
+        toast.success('Listing deleted');
         router.refresh();
       } catch (error: any) {
         toast.error(error?.response?.data?.error);
@@ -38,10 +38,7 @@ export const TripsClient: FC<TripsClientProps> = ({
 
   return (
     <Container>
-      <Heading
-        title={'Trips'}
-        subtitle={`Where you've been and where you're going`}
-      />
+      <Heading title={'Properties'} subtitle={`List of your properties`} />
       <div
         className='
           mt-10
@@ -55,15 +52,14 @@ export const TripsClient: FC<TripsClientProps> = ({
           gap-8
         '
       >
-        {reservations.map((reservation: any) => (
+        {listings.map((listing) => (
           <ListingCard
-            key={reservation.id}
-            data={reservation.listing}
-            reservation={reservation}
-            actionId={reservation.id}
+            key={listing.id}
+            data={listing}
+            actionId={listing.id}
             onAction={onCancel}
-            disabled={deletingId === reservation.id}
-            actionLabel={'Cancel reservation'}
+            disabled={deletingId === listing.id}
+            actionLabel={'Deleted property'}
             currentUser={currentUser}
           />
         ))}
