@@ -9,7 +9,7 @@ interface Params {
   listingId?: string;
 }
 
-export const ListingPage = async ({ params }: { params: Params }) => {
+const ListingPage = async ({ params }: { params: Params }) => {
   const listing = await getListingById(params);
   const currentUser = await getCurrentUser();
   const reservations = await getReservations(params);
