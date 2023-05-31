@@ -55,7 +55,7 @@ export const ReservationsClient: FC<ReservationsClientProps> = ({
           gap-8
         '
       >
-        {reservations.map((reservation: any) => (
+        {reservations.map((reservation) => (
           <ListingCard
             key={reservation.id}
             data={reservation.listing}
