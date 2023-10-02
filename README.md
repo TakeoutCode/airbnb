@@ -39,7 +39,6 @@ yarn install
 #### _Renombra el archivo para las variables de entonrno_
 En la raiz del proyecto, renombra el archivo **.env.template** a **.env.local**
 
-```
 | Variable de entorno | Ejemplo | Descripcion |
 | --- | --- | ---|
 MONGO_URL= | mongodb+srv://<username>:<password>@<cluster> | [MongoDB](https://www.mongodb.com/)
@@ -49,7 +48,7 @@ GITHUB_SECRET= | secret-github | Secret que nos proporciona [GitHub](https://git
 GOOGLE_CLIENT_ID= | id-google | ID de nuestro proyecto que nos proporciona [Google](https://console.cloud.google.com/)
 GOOGLE_CLIENT_SECRET= | secret-github | Secret que nos proporciona [Google](https://console.cloud.google.com/)
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME= | ncloud-name | Cloud Name que nos proporciona [Cloudinary](https://cloudinary.com/)
-```
+
 
 Una vez que tengas las claves, agrega cada una a su respectivo campo sin agregar espacios ni comillas de ningún tipo.
 
